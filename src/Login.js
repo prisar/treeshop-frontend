@@ -8,12 +8,8 @@ class Login extends Component {
     }
 
     onSubmit() {
-        fetch('http://localhost:3000', {
-            method: 'POST',
-            body: JSON.stringify({
-                'username': 'abc@abc.com',
-                'password': 'hhh'
-            })
+        fetch('http://localhost:8000/login', {
+            method: 'POST'
         }).then((result) => {
             return result.json();
         }).then(users => {
