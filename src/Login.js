@@ -8,12 +8,10 @@ class Login extends Component {
     }
 
     onSubmit() {
-        fetch('http://localhost:3000', {
+        const data = new URLSearchParams("email=abc@abc.com&password=abc@1234");
+        fetch('http://localhost:8000/orders/userlogin', {
             method: 'POST',
-            body: JSON.stringify({
-                'username': 'abc@abc.com',
-                'password': 'hhh'
-            })
+            body: data
         }).then((result) => {
             return result.json();
         }).then(users => {
