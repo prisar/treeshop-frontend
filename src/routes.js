@@ -23,5 +23,5 @@ const createPage = (path, title, component, description, keywords) => ({
 export default [
   createPage('/login', 'Login', Login),
   createPage('/orders', 'Orders', Orders),
-  createPage('/index', 'Index', Index)
+  createPage('/', 'Index', Index)
 ];

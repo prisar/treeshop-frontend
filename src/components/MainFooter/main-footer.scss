@@ -1,0 +1,46 @@
+@import '../../styles/_variables.scss';
+
+.footer {
+    height: 50px;
+    background-color: #efefed;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &.fixed {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        z-index: 778;
+    }
+    .copy-right {
+        color: $blackColor;
+        font-size: 12px;
+        font-weight: 400;
+        padding-left: 30px;
+    }
+    .right-list {
+        padding-right: 30px;
+        ul {
+            display: flex;
+            
+        }
+        li {
+            height: 14px;
+            line-height: 14px;
+            &:nth-child(2) {
+                border-right: 1px solid #999;
+                border-left: 1px solid #999;
+                padding: 0 15px;
+                margin: 0 15px;
+                
+            }
+            a {
+                color: #544f40;
+                font-size: 12px;
+                font-weight: 400;
+                line-height: 14px;
+            }
+        }
+    }
+}

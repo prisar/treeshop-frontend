@@ -1,5 +1,9 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import MainFooter from '../../components/MainFooter';
+import MainHeader from '../../components/MainHeader';
+
+import './styles.scss';
 
 class Index extends Component {
   constructor(props) {
@@ -7,12 +11,20 @@ class Index extends Component {
   }
 
   render() {
-      
+
     return (
-      <ul>
-        <li><NavLink to='/login'>Login</NavLink></li>
-        <li><NavLink to='/orders'>Orders</NavLink></li>
-      </ul>
+      <div>
+        <MainHeader type='customer'/>
+        <div className="menul">
+          <ul>
+            <li><NavLink to='/login'>Login</NavLink></li>
+            <li><NavLink to='/orders'>Orders</NavLink></li>
+          </ul>
+        </div>
+        
+        <MainFooter />
+      </div>
+
     )
   }
 }

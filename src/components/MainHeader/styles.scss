@@ -1,0 +1,160 @@
+@import '../../styles/_variables.scss';
+
+// .header
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    position: fixed;
+    background-color: green;
+    height: 50px;
+    z-index: 999;
+    top: 0;
+    .logo-link {
+        display: block;
+        margin-left: 25px;
+        width: 36px;
+        height: 36px;
+        overflow: hidden;
+        border-radius: 100%;
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .right-area {
+        display: flex;
+        align-items: center;
+        // .notification-boxs
+        .notification-boxs {
+            padding: 0 15px;
+            border-right: 1px solid rgba(255,255,255,0.2);
+            .btn-ring {
+                position: relative;
+                // background: url(../i/icon-bell.svg) center center no-repeat;
+                background-size: 17px auto;
+                width: 17px;
+                height: 17px;
+                i {
+                    width: 10px;
+                    height: 10px;
+                    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+                    background-color: #ffffff;
+                    border-radius: 100%;
+                    display: inline-block;
+                    position: absolute;
+                    top:-3px;
+                    right: -4px;
+                }
+            }
+        }
+        .user-boxs {
+            display: block;
+            display: flex;
+            align-items: center;
+            border-right: 1px solid rgba(255,255,255,0.2);
+            padding-right: 22px;
+            padding-left: 15px;
+            .user-photo {
+                display: inline-block;
+                width: 24px;
+                height: 24px;
+                border-radius: 100%;
+                flex: 0 0 24px;
+            }
+            .rights {
+                margin-left: 9px;
+                .user-name {
+                    font-family: Arial;
+                    font-size: 12px;
+                    font-weight: 700;
+                    color: $whiteColor;
+                    display: block;
+                    line-height: 14px;
+                    margin-bottom: -1px;
+                }
+                .txt {
+                    font-size: 11px;
+                    font-weight: 400;
+                    color: #fff;
+                }
+            }
+        }
+        //.login-out
+        .login-out {
+            padding: 0 20px;
+            .btn-logout {
+                // background: url(../i/logout.svg) center center no-repeat;
+                background-size: 19px auto;
+                width: 19px;
+                height: 18px;
+                vertical-align: middle;
+            }
+        }
+        // .right-block
+        .right-block {
+            height: 50px;
+            width: 160px;
+            background-color: $blueColor;
+            text-align: center;
+            .txt {
+                line-height: 50px;
+                color: $whiteColor;
+                font-size: 14px;
+                font-weight: 700;
+                text-transform: uppercase;
+                display: block;
+            }
+        }
+    }
+}
+
+.search-boxs 
+.search-boxs {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    height: 28px;
+    border-radius: 14px;
+    transform: translate(-50%,-50%);
+    background-color: rgba(255,255,255,0.2);
+    .inputs {
+        border: 0;
+        height: 28px;
+        background: transparent;
+        padding-left: 40px;
+        position: relative;
+        input {
+            font-size: 12px;
+            color: #fff;
+            height: 30px;
+        }
+        input::-ms-clear,
+        input::-ms-reveal {
+            display: none;
+        }
+        input::-webkit-input-placeholder {
+            color: #fff;
+        }
+        input:-moz-placeholder {
+            color: #fff;
+        }
+        input::-moz-placeholder {
+            color: #fff;
+        }
+        input:-ms-input-placeholder {
+            color: #fff;
+        }
+        .btn-search {
+            position: absolute;
+            left: 10px;
+            top: 4px;
+            // background: url(../i/icon-search.svg) center center no-repeat;
+            background-size: 19px;
+            height: 19px;
+            width: 19px;
+        }
+    }
+}
