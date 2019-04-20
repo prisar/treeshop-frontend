@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+
+import './styles.scss';
+import MainFooter from '../../components/MainFooter';
 
 const initialstate = {
   loginUser: {
     email: '',
     password: ''
   },
-  users: []
+  user: [],
+  authenticated: false
 };
 
 class Login extends Component {
@@ -23,8 +28,12 @@ class Login extends Component {
             body: data
         }).then((result) => {
             return result.json();
-        }).then(users => {
-            this.setState({ users });
+        }).then(user => {
+          const res = JSON.parse(user);
+          console.log(res);
+            if (res.error === false && res.token !== null) {
+              this.setState({ user, authenticated: true });
+            }
         }).catch((err) => {
             
         });
@@ -41,15 +50,22 @@ class Login extends Component {
     }
 
     render() {
+      if (this.state.authenticated === true) {
+        return <Redirect to='/Orders'/>;
+      }
+
       return (
         <div className="Login">
-          <div>Tree Shop</div>
-          <h1>Login</h1>
+          <h1>Tree Shop</h1>
+          <h3>Login</h3>
           <input type="text" id='email' placeholder='email' onChange={this.fieldChange} />
           <br/>
           <input type='password' id='password' placeholder='password' onChange={this.fieldChange} />
           <br/>
           <button onClick={this.onSubmit}>Submit</button>
+          <h5>SignUp</h5>
+          <h5>Forgot Password?</h5>
+          <MainFooter />
         </div>
       );
     }
