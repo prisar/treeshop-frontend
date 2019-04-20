@@ -11,33 +11,20 @@ const initialstate = {
 class Login extends Component {
     constructor(props) {
         super(props);
-        //this.onSubmit = this.onSubmit.bind(this);
         this.state = initialstate;
     }
 
-<<<<<<< HEAD
-    onSubmit() {
-<<<<<<< HEAD
-        const data = new URLSearchParams("email=abc@abc.com&password=abc@1234");
-        fetch('http://localhost:8000/orders/userlogin', {
-            method: 'POST',
-            body: data
-=======
-        fetch('http://localhost:8000/login', {
-            method: 'POST'
->>>>>>> 30dc8919169fb3a0932192ef16e80c7e0fc84c3a
-=======
-    onSubmit = () => {
+    onSubmit = (e) => {
+      e.preventDefault();
+      
       const data = new URLSearchParams(`email=${this.state.loginUser.email}&password=${this.state.loginUser.password}`);
-        fetch('http://localhost:8000/login', {
+        fetch('http://localhost:8000/api/users/userlogin', {
             method: 'POST',
             body: data
->>>>>>> take data from input feilds
         }).then((result) => {
             return result.json();
         }).then(users => {
             this.setState({ users });
-            console.log(this.state);
         }).catch((err) => {
             
         });
@@ -51,12 +38,12 @@ class Login extends Component {
         const email = this.state.loginUser.email;
         this.setState({ loginUser: { email: email, password: e.target.value } });
       }
-      console.log(this.state);
     }
 
     render() {
       return (
         <div className="Login">
+          <div>Tree Shop</div>
           <h1>Login</h1>
           <input type="text" id='email' placeholder='email' onChange={this.fieldChange} />
           <br/>
