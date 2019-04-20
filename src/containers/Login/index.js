@@ -11,20 +11,20 @@ const initialstate = {
 class Login extends Component {
     constructor(props) {
         super(props);
-        //this.onSubmit = this.onSubmit.bind(this);
         this.state = initialstate;
     }
 
-    onSubmit = () => {
+    onSubmit = (e) => {
+      e.preventDefault();
+      
       const data = new URLSearchParams(`email=${this.state.loginUser.email}&password=${this.state.loginUser.password}`);
-        fetch('http://localhost:8000/login', {
+        fetch('http://localhost:8000/api/users/userlogin', {
             method: 'POST',
             body: data
         }).then((result) => {
             return result.json();
         }).then(users => {
             this.setState({ users });
-            console.log(this.state);
         }).catch((err) => {
             
         });
@@ -38,12 +38,12 @@ class Login extends Component {
         const email = this.state.loginUser.email;
         this.setState({ loginUser: { email: email, password: e.target.value } });
       }
-      console.log(this.state);
     }
 
     render() {
       return (
         <div className="Login">
+          <div>Tree Shop</div>
           <h1>Login</h1>
           <input type="text" id='email' placeholder='email' onChange={this.fieldChange} />
           <br/>
