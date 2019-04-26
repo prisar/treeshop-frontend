@@ -4,6 +4,9 @@ import { Redirect } from 'react-router-dom';
 import './styles.scss';
 import MainFooter from '../../components/MainFooter';
 
+import Input from '@material-ui/core/Input';
+import Button from '@material-ui/core/Button';
+
 const initialstate = {
   loginUser: {
     email: '',
@@ -23,7 +26,7 @@ class Login extends Component {
       e.preventDefault();
       
       const data = new URLSearchParams(`email=${this.state.loginUser.email}&password=${this.state.loginUser.password}`);
-        fetch('http://localhost:8000/api/users/userlogin', {
+        fetch('http://localhost:8000/api/users/login', {
             method: 'POST',
             body: data
         }).then((result) => {
@@ -32,11 +35,28 @@ class Login extends Component {
           const res = JSON.parse(user);
           console.log(res);
             if (res.error === false && res.token !== null) {
+              let authResult = {
+                accessToken: res.token
+              };
+              localStorage.setItem('access_token', authResult.accessToken);
+
               this.setState({ user, authenticated: true });
             }
         }).catch((err) => {
             
         });
+    }
+
+    setSession = (authResult) => {
+      // // Set the time that the access token will expire at
+      // let expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
+      // localStorage.setItem('access_token', authResult.accessToken);
+      // localStorage.setItem('id_token', authResult.idToken);
+      // localStorage.setItem('expires_at', expiresAt);
+      // // navigate to the home route
+      // history.replace('/feed');
+
+      localStorage.setItem('access_token', authResult.accessToken);
     }
 
     fieldChange = (e) => {
@@ -56,15 +76,14 @@ class Login extends Component {
 
       return (
         <div className="Login">
-          <h1>Tree Shop</h1>
           <h3>Login</h3>
-          <input type="text" id='email' placeholder='email' onChange={this.fieldChange} />
+          <Input id='email' placeholder='email' onChange={this.fieldChange}/>
           <br/>
-          <input type='password' id='password' placeholder='password' onChange={this.fieldChange} />
+          <Input type='password' id='password' placeholder='password' onChange={this.fieldChange} />
           <br/>
-          <button onClick={this.onSubmit}>Submit</button>
-          <h5>SignUp</h5>
-          <h5>Forgot Password?</h5>
+          <Button variant="contained" color="primary" onClick={this.onSubmit} >Submit</Button>
+          {/* <h5>SignUp</h5>
+          <h5>Forgot Password?</h5> */}
           <MainFooter />
         </div>
       );
