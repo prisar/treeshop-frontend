@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MainHeader from '../../components/MainHeader';
+import OrderDetails from '../../components/OrderDetails';
 
 class Orders extends Component {
   constructor(props) {
@@ -8,7 +9,7 @@ class Orders extends Component {
     this.state = { orders: [] };
   }
 
-  getOrders() {
+  getOrders = () => {
     fetch('http://localhost:8000/orders/showAllOrders', {
       method: 'GET'
     }).then((result) => {
@@ -22,13 +23,11 @@ class Orders extends Component {
   }
 
   render() {
+
     return (
       <div>
         <MainHeader />
-        <div className="Login">
-          <div onClick={this.getOrders()}>Recent Orders</div>
-          {JSON.stringify(this.state.orders)}
-        </div>
+        <OrderDetails {...this.state.orders[0]}/>
       </div>
 
     );
