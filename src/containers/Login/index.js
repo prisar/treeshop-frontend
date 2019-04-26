@@ -7,6 +7,8 @@ import MainFooter from '../../components/MainFooter';
 import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
 
+import { API_URL } from '../../config';
+
 const initialstate = {
   loginUser: {
     email: '',
@@ -26,7 +28,7 @@ class Login extends Component {
       e.preventDefault();
       
       const data = new URLSearchParams(`email=${this.state.loginUser.email}&password=${this.state.loginUser.password}`);
-        fetch('http://localhost:8000/api/users/login', {
+        fetch(API_URL + 'users/login', {
             method: 'POST',
             body: data
         }).then((result) => {
