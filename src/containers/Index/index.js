@@ -5,6 +5,10 @@ import MainHeader from '../../components/MainHeader';
 
 import './styles.scss';
 
+const initialstate = {
+  authenticated: false,
+};
+
 class Index extends Component {
   constructor(props) {
     super(props);
@@ -14,10 +18,11 @@ class Index extends Component {
 
     return (
       <div>
-        <MainHeader type='customer'/>
+        {/* <MainHeader type='customer'/> */}
         <div className="menul">
           <ul>
             <li><NavLink to='/login'>Login</NavLink></li>
+            <li><NavLink to='/signup'>Sign Up</NavLink></li>
             <li><NavLink to='/orders'>Orders</NavLink></li>
           </ul>
         </div>

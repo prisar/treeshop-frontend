@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import './styles.scss';
 import MainFooter from '../../components/MainFooter';
@@ -15,7 +16,8 @@ const initialstate = {
     password: ''
   },
   user: [],
-  authenticated: false
+  authenticated: false,
+  errorMessage: ''
 };
 
 class Login extends Component {
@@ -33,16 +35,19 @@ class Login extends Component {
             body: data
         }).then((result) => {
             return result.json();
-        }).then(user => {
-          const res = JSON.parse(user);
-          console.log(res);
-            if (res.error === false && res.token !== null) {
+        }).then(res => {
+            if (res.error) {
+              let user = this.state.user;
+              this.setState({ user, authenticated: false, errorMessage: res.message });
+            }
+            if (!res.error) {
               let authResult = {
                 accessToken: res.token
               };
               localStorage.setItem('access_token', authResult.accessToken);
 
-              this.setState({ user, authenticated: true });
+              let user = res;
+              this.setState({ user, authenticated: true, errorMessage: '' });
             }
         }).catch((err) => {
             
@@ -78,14 +83,16 @@ class Login extends Component {
 
       return (
         <div className="Login">
-          <h3>Login</h3>
-          <Input id='email' placeholder='email' onChange={this.fieldChange}/>
+          <h5>Login</h5>
+          <div className="error-text">{this.state.errorMessage}</div>
+          
+          <Input id='email' className="login-form-input" placeholder='email' onChange={this.fieldChange}/>
           <br/>
-          <Input type='password' id='password' placeholder='password' onChange={this.fieldChange} />
+          <Input type='password' className="login-form-input" id='password' placeholder='password' onChange={this.fieldChange} />
           <br/>
           <Button variant="contained" color="primary" onClick={this.onSubmit} >Submit</Button>
-          {/* <h5>SignUp</h5>
-          <h5>Forgot Password?</h5> */}
+          <br></br>
+          <NavLink to="/signup">Sign Up</NavLink>
           <MainFooter />
         </div>
       );
