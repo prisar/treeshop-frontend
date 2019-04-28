@@ -1,11 +1,11 @@
+import axios from 'axios';
 import React, { Component } from "react";
-import ProductCard from "../../components/ProductCard";
-
 import MainFooter from '../../components/MainFooter';
 import MainHeader from '../../components/MainHeader';
-
-import './styles.scss';
+import ProductCard from "../../components/ProductCard";
 import SubHeader from '../../components/SubHeader';
+import { API_URL } from "../../config";
+import './styles.scss';
 
 export default class ProductList extends Component {
   constructor(props) {
@@ -20,17 +20,11 @@ export default class ProductList extends Component {
   }
 
   getProducts = () => {
-    fetch("http://localhost:8000/api/products", {
-      method: "GET"
+    axios.get(`${API_URL}products`)
+    .then(response => {
+          let products = response.data.results;
+          this.setState({ products: products });
     })
-      .then(result => {
-        return result.json();
-      })
-      .then(response => {
-        let products = response.results;
-        this.setState({ products: products });
-      })
-      .catch(err => {});
   };
 
   render() {

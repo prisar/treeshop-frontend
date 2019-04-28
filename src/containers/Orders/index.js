@@ -3,7 +3,7 @@ import MainHeader from "../../components/MainHeader";
 import OrderDetails from "../../components/OrderDetails";
 import SubHeader from "../../components/SubHeader";
 import MainFooter from "../../components/MainFooter";
-
+import { API_URL } from "../../config";
 import axios from 'axios';
 
 class Orders extends Component {
@@ -18,7 +18,7 @@ class Orders extends Component {
   }
 
   getOrders = () => {
-    axios.get(`http://localhost:8000/api/orders/myorders?customerid=9`)
+    axios.get(`${API_URL}orders/myorders?customerid=9`)
       .then(response => {
             let orders = response.data.orders;
             this.setState({ orders: orders });

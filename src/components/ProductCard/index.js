@@ -7,6 +7,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import React, { Component } from "react";
+import { API_ROOT } from "../../config";
 
 const cardStyle = {
   width: "100%"
@@ -51,7 +52,7 @@ export default class ProductCard extends Component {
           />
           <CardMedia
             image={
-              "http://localhost:8000/public/assets/images/" +
+              `${API_ROOT}public/assets/images/` +
               this.props.card.product_image
             }
             title={this.props.card.product_name}
