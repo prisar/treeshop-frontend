@@ -3,6 +3,7 @@ import Login from './containers/Login';
 import Index from './containers/Index';
 import Orders from './containers/Orders';
 import SignUpForm from './components/SignUpForm';
+import ProductList from './containers/ProductList';
 
 /**
  * Generate an object with all necessary fields to render a page.
@@ -24,6 +25,7 @@ const createPage = (path, title, component, description, keywords) => ({
 export default [
   createPage('/login', 'Login', Login),
   createPage('/signup', 'Sign Up', SignUpForm),
+  createPage('/products', 'Products', ProductList),
   createPage('/orders', 'Orders', Orders),
   createPage('/', 'Index', Index)
 ];

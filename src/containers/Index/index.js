@@ -23,6 +23,7 @@ class Index extends Component {
           <ul>
             <li><NavLink to='/login'>Login</NavLink></li>
             <li><NavLink to='/signup'>Sign Up</NavLink></li>
+            <li><NavLink to='/products'>Products</NavLink></li>
             <li><NavLink to='/orders'>Orders</NavLink></li>
           </ul>
         </div>
