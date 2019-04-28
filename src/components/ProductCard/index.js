@@ -54,7 +54,7 @@ export default class ProductCard extends Component {
               "http://localhost:8000/public/assets/images/" +
               this.props.card.product_image
             }
-            title="Paella dish"
+            title={this.props.card.product_name}
             style={imageStyle}
           />
           <CardContent>

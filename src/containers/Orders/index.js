@@ -1,37 +1,44 @@
-import React, { Component } from 'react';
-import MainHeader from '../../components/MainHeader';
-import OrderDetails from '../../components/OrderDetails';
-import MainFooter from '../../components/MainFooter';
+import React, { Component } from "react";
+import MainHeader from "../../components/MainHeader";
+import OrderDetails from "../../components/OrderDetails";
+import SubHeader from "../../components/SubHeader";
+import MainFooter from "../../components/MainFooter";
+
+import axios from 'axios';
 
 class Orders extends Component {
   constructor(props) {
     super(props);
-    this.getOrders = this.getOrders.bind(this);
     this.state = { orders: [] };
+    this.getOrders = this.getOrders.bind(this);
+  }
+
+  componentDidMount() {
+    this.getOrders();
   }
 
   getOrders = () => {
-    fetch('http://localhost:8000/orders/showAllOrders', {
-      method: 'GET'
-    }).then((result) => {
-      return result.json();
-    }).then(orders => {
-      this.setState({ orders });
-      console.log(this.state);
-    }).catch((err) => {
-
-    });
-  }
+    axios.get(`http://localhost:8000/api/orders/myorders?customerid=9`)
+      .then(response => {
+            let orders = response.data.orders;
+            this.setState({ orders: orders });
+      })
+  };
 
   render() {
-
     return (
       <div>
         <MainHeader />
-        <OrderDetails {...this.state.orders[0]}/>
+        <SubHeader />
+        <h1>My Orders</h1>
+        <div>
+          {this.state.orders.map(order => (
+            <OrderDetails order={order} key={order.ID} />
+          ))}
+        </div>
+
         <MainFooter />
       </div>
-      
     );
   }
 }
