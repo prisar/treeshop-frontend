@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import "./styles.scss";
 
@@ -8,16 +8,9 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
-// import MenuIcon from "@material-ui/icons/Menu";
 
 class Masterhead extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
-    const { type, formType } = { ...this.props };
-
     return (
       <header className="header">
         <AppBar position="static">
@@ -29,10 +22,18 @@ class Masterhead extends Component {
             >
               {/* <MenuIcon /> */}
             </IconButton>
-            <Typography variant="h6" color="inherit" >
-              Tree Shopping
+            <Typography variant="h6" color="inherit">
+              <Link to="/">Home</Link>
+              ecommerce
             </Typography>
-            <Button color="inherit"><NavLink className='icons btn-logout' to='/login'>Login</NavLink></Button>
+            <Button color="inherit">
+              <NavLink className="icons btn-logout" to="/login">
+                Login
+              </NavLink>
+            </Button>
+            <Button color="inherit">
+              <NavLink to="/signup">Signup</NavLink>
+            </Button>
           </Toolbar>
         </AppBar>
         {/* <div className='login-out'>

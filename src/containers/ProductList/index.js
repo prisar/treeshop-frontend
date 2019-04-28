@@ -1,6 +1,12 @@
 import React, { Component } from "react";
 import ProductCard from "../../components/ProductCard";
 
+import MainFooter from '../../components/MainFooter';
+import MainHeader from '../../components/MainHeader';
+
+import './styles.scss';
+import SubHeader from '../../components/SubHeader';
+
 export default class ProductList extends Component {
   constructor(props) {
     super(props);
@@ -30,12 +36,15 @@ export default class ProductList extends Component {
   render() {
     return (
       <div>
+        <MainHeader />
+        <SubHeader />
         <h1>Products</h1>
         <div>
           {this.state.products.map(product => (
             <ProductCard card={product} key={product.id} />
           ))}
         </div>
+        <MainFooter />
       </div>
     );
   }

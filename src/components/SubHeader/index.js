@@ -4,11 +4,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import MenuList from "@material-ui/core/MenuList";
 
 import "./styles.scss";
-import { Paper, Toolbar, Menu, Button, IconButton } from "@material-ui/core";
-
-const menuStyle = {
-  width: "100%"
-};
+import { Toolbar, Menu, IconButton } from "@material-ui/core";
 
 const toolbarStyle = {
   backgroundColor: "yellow"
@@ -69,15 +65,6 @@ export default class SubHeader extends Component {
               </MenuList>
             </Menu>
           </Toolbar>
-
-          <ul>
-            <li>
-              <NavLink to="/login">Login</NavLink>
-            </li>
-            <li>
-              <NavLink to="/signup">Sign Up</NavLink>
-            </li>
-          </ul>
         </div>
       </div>
     );

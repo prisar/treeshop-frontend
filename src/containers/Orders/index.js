@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import MainHeader from '../../components/MainHeader';
 import OrderDetails from '../../components/OrderDetails';
+import MainFooter from '../../components/MainFooter';
 
 class Orders extends Component {
   constructor(props) {
@@ -28,8 +29,9 @@ class Orders extends Component {
       <div>
         <MainHeader />
         <OrderDetails {...this.state.orders[0]}/>
+        <MainFooter />
       </div>
-
+      
     );
   }
 }

@@ -89,7 +89,7 @@ class Login extends Component {
 
   render() {
     if (this.state.authenticated === true) {
-      return <Redirect to="/Orders" />;
+      return <Redirect to="/products" />;
     }
 
     return (

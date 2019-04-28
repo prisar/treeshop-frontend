@@ -6,9 +6,6 @@ import './styles.scss';
 import SubHeader from '../../components/SubHeader';
 
 class Index extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
 
