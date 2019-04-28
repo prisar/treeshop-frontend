@@ -8,6 +8,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import React, { Component } from "react";
 import { API_ROOT } from "../../config";
+import { Redirect } from "react-router-dom";
 
 const cardStyle = {
   width: "100%"
@@ -23,11 +24,28 @@ const priceStyle = {
 };
 
 export default class ProductCard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      show_product_details: false
+    };
+  }
+
+  showProductDetails = () => {
+    this.setState({
+      show_product_details: true
+    });
+  };
 
   render() {
+    if (this.state.show_product_details === true) {
+      let path = `/product_details/${this.props.card.id}`;
+      return <Redirect to={path} />;
+    }
+
     return (
       <div>
-        <Card style={cardStyle}>
+        <Card style={cardStyle} onClick={this.showProductDetails}>
           <CardHeader
             action={
               <IconButton>
@@ -52,8 +70,7 @@ export default class ProductCard extends Component {
           />
           <CardMedia
             image={
-              `${API_ROOT}public/assets/images/` +
-              this.props.card.product_image
+              `${API_ROOT}public/assets/images/` + this.props.card.product_image
             }
             title={this.props.card.product_name}
             style={imageStyle}

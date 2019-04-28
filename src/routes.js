@@ -4,6 +4,9 @@ import Index from './containers/Index';
 import Orders from './containers/Orders';
 import SignUpForm from './components/SignUpForm';
 import ProductList from './containers/ProductList';
+import Cart from "./containers/Cart";
+import Checkout from './containers/Checkout';
+import Product from './containers/Product';
 
 /**
  * Generate an object with all necessary fields to render a page.
@@ -26,6 +29,9 @@ export default [
   createPage('/login', 'Login', Login),
   createPage('/signup', 'Sign Up', SignUpForm),
   createPage('/products', 'Products', ProductList),
+  createPage('/product_details/:id', 'Products', Product),
+  createPage('/viewcart', 'Cart', Cart),
+  createPage('/checkout', 'Checkout', Checkout),
   createPage('/orders', 'Orders', Orders),
   createPage('/', 'Index', Index)
 ];
