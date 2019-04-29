@@ -9,13 +9,13 @@ import Input from "@material-ui/core/Input";
 import Button from "@material-ui/core/Button";
 
 import { API_URL } from "../../config";
+import axios from "axios";
 
 const initialstate = {
   loginUser: {
     email: "",
     password: ""
   },
-  user: [],
   authenticated: false,
   errorMessage: ""
 };
@@ -34,46 +34,29 @@ class Login extends Component {
         this.state.loginUser.password
       }`
     );
-    fetch(API_URL + "users/login", {
-      method: "POST",
-      body: data
-    })
-      .then(result => {
-        return result.json();
-      })
-      .then(res => {
-        if (res.error) {
-          let user = this.state.user;
-          this.setState({
-            user,
-            authenticated: false,
-            errorMessage: res.message
-          });
-        }
-        if (!res.error) {
-          let authResult = {
-            accessToken: res.token
-          };
-          localStorage.setItem("access_token", authResult.accessToken);
 
-          let user = res;
-          this.setState({ user, authenticated: true, errorMessage: "" });
-        }
-      })
-      .catch(err => {});
+    axios.post(API_URL + "users/login", data).then(response => {
+      let authResult = response.data;
+      if (!authResult.error) {
+        this.setSession(authResult);
+
+        this.setState({
+          authenticated: true,
+          errorMessage: ""
+        });
+      }
+      if (authResult.error) {
+        this.setState({
+          authenticated: false,
+          errorMessage: authResult.message
+        });
+      }
+    });
   };
 
   setSession = authResult => {
-    // // Set the time that the access token will expire at
-    // let expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
-    // localStorage.setItem('access_token', authResult.accessToken);
-    // localStorage.setItem('id_token', authResult.idToken);
-    // localStorage.setItem('expires_at', expiresAt);
-    // // navigate to the home route
-    // history.replace('/feed');
-
-    localStorage.setItem("access_token", authResult.accessToken);
-  };
+    localStorage.setItem('access_token', authResult.token);
+  }
 
   fieldChange = e => {
     if (e.target.id === "email") {
@@ -88,7 +71,7 @@ class Login extends Component {
   };
 
   render() {
-    if (this.state.authenticated === true) {
+    if (this.state.authenticated) {
       return <Redirect to="/products" />;
     }
 
