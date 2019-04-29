@@ -30,7 +30,7 @@ export default [
   createPage('/signup', 'Sign Up', SignUpForm),
   createPage('/products', 'Products', ProductList),
   createPage('/product_details/:id', 'Products', Product),
-  createPage('/viewcart', 'Cart', Cart),
+  createPage('/viewcart/:customer_id', 'Cart', Cart),
   createPage('/checkout', 'Checkout', Checkout),
   createPage('/orders', 'Orders', Orders),
   createPage('/', 'Index', Index)

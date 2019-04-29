@@ -6,6 +6,7 @@ import { Card, CardContent, Button } from "@material-ui/core";
 import axios from "axios";
 import { API_URL } from "../../config";
 import { API_ROOT } from "../../config";
+import { Redirect } from "react-router-dom";
 
 const leftCard = {
   width: "50%",
@@ -58,12 +59,49 @@ export default class Product extends Component {
     axios.get(`${API_URL}products/${productId}`).then(response => {
       let details = response.data.results;
       this.setState({
-        details: details
+        details: details,
+        proceed_to_cart: false,
+        proceed_to_checkout: false,
+        quantity: 0
       });
     });
   }
 
+  addToCart = () => {
+    let data = {
+      customerId: 9, // TODO login user
+      productId: this.state.details.id,
+      quantity: 1
+    };
+
+    axios.post(`${API_URL}cart`, data).then(response => {
+      console.log(response);
+      if (response.data.status === "success") {
+        this.setState({
+          proceed_to_cart: true
+        });
+      }
+    });
+  };
+
+  checkoutNow = () => {
+    // TODO genertate order id
+    this.setState({
+      proceed_to_checkout: true
+    });
+  };
+
   render() {
+    if (this.state.proceed_to_cart) {
+      let path = "/viewcart";
+      return <Redirect to={path} />;
+    }
+
+    if (this.state.proceed_to_checkout) {
+      let path = "/checkout";
+      return <Redirect to={path} />;
+    }
+
     return (
       <div>
         <Masterhead />
@@ -95,10 +133,18 @@ export default class Product extends Component {
               </div>
             </div>
             <div style={buttons}>
-              <Button variant="contained" color="primary">
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={this.addToCart}
+              >
                 Add to Cart
               </Button>
-              <Button variant="contained" color="primary">
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={this.checkoutNow}
+              >
                 Buy Now
               </Button>
             </div>

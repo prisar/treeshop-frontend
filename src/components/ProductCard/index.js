@@ -45,7 +45,7 @@ export default class ProductCard extends Component {
 
     return (
       <div>
-        <Card style={cardStyle} onClick={this.showProductDetails}>
+        <Card style={cardStyle}>
           <CardHeader
             action={
               <IconButton>
@@ -74,6 +74,7 @@ export default class ProductCard extends Component {
             }
             title={this.props.card.product_name}
             style={imageStyle}
+            onClick={this.showProductDetails}
           />
           <CardContent>
             <Typography color="textSecondary" gutterBottom>
@@ -84,9 +85,9 @@ export default class ProductCard extends Component {
             </Typography>
           </CardContent>
           <CardActions>
-            <Button variant="contained" color="primary" size="small">
+            {/* <Button variant="contained" color="primary" size="small">
               Add to Wishlist
-            </Button>
+            </Button> */}
           </CardActions>
         </Card>
       </div>
