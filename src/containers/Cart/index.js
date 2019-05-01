@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import MainFooter from "../../components/MainFooter";
 import Masterhead from "../../components/MainHeader";
 import SubHeader from "../../components/SubHeader";
 import axios from "axios";
 import { API_URL } from "../../config";
 import CartItem from "../../components/CartItem";
 import { Button } from "@material-ui/core";
+import jwt from "jsonwebtoken";
 
 export default class Cart extends Component {
   constructor(props) {
@@ -20,7 +20,9 @@ export default class Cart extends Component {
   }
 
   getCartItems() {
-    const customerId = this.props.routeParams.customer_id;
+    const access_token = localStorage.getItem("access_token");
+    const rows = jwt.decode(access_token);
+    const customerId = rows.rows[0].user_id; 
     axios.get(`${API_URL}cart/${customerId}`).then(response => {
       const items = response.data.results;
       this.setState({
@@ -38,10 +40,9 @@ export default class Cart extends Component {
         <Button color="primary">Procced to Buy</Button>
         <div>
           {this.state.cart_items.map(item => (
-            <CartItem item={item} key={item.Id} />
+            <CartItem item={item} key={item.cart_id} />
           ))}
         </div>
-        <MainFooter />
       </div>
     );
   }
