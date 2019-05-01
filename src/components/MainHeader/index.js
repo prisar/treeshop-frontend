@@ -54,9 +54,12 @@ class Masterhead extends Component {
     return true;
   }
 
-  logout() {
+  logout = () => {
     // Clear access token from local storage
     localStorage.removeItem("access_token");
+    this.setState({
+      displayName: ""
+    });
   }
 
   render() {
