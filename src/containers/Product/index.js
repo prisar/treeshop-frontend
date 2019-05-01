@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import MainFooter from "../../components/MainFooter";
 import Masterhead from "../../components/MainHeader";
 import SubHeader from "../../components/SubHeader";
 import { Card, CardContent, Button } from "@material-ui/core";
@@ -151,7 +150,6 @@ export default class Product extends Component {
           </CardContent>
         </Card>
 
-        {/* <MainFooter /> */}
       </div>
     );
   }
