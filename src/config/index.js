@@ -2,11 +2,11 @@
  * App configurations
  */
 
-export const API_URL = 'http://localhost:8000/api/';
-export const API_ROOT = 'http://localhost:8000/';
+// export const API_URL = 'http://localhost:8000/api/';
+// export const API_ROOT = 'http://localhost:8000/';
 
-// export const API_URL = 'https://intense-ocean-48593.herokuapp.com/api/';
-// export const API_ROOT = 'https://intense-ocean-48593.herokuapp.com/';
+export const API_URL = 'https://intense-ocean-48593.herokuapp.com/api/';
+export const API_ROOT = 'https://intense-ocean-48593.herokuapp.com/';
 
 export const META = {
   PAGE_TITLE_SUFFIX: 'Tree Shop Web App',
