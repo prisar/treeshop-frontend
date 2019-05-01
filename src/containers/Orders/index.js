@@ -21,6 +21,10 @@ class Orders extends Component {
   getOrders = () => {
     const access_token = localStorage.getItem("access_token");
     const rows = jwt.decode(access_token);
+    if (!rows) {
+      return;
+    }
+    
     const customerId = rows.rows[0].user_id;
     axios.get(`${API_URL}orders/myorders?customerid=${customerId}`)
       .then(response => {

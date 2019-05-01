@@ -68,12 +68,6 @@ export default class SubHeader extends Component {
                   <NavLink to="/products">Products</NavLink>
                 </MenuItem>
                 <MenuItem>
-                  <NavLink to="/viewcart">Cart</NavLink>
-                </MenuItem>
-                <MenuItem>
-                  <NavLink to="/checkout">Confirm Order</NavLink>
-                </MenuItem>
-                <MenuItem>
                   <NavLink to="/orders">Orders</NavLink>
                 </MenuItem>
               </MenuList>

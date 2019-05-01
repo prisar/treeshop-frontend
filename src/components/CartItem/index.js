@@ -36,7 +36,7 @@ export default class CartItem extends Component {
 
   render() {
       if (this.state.redirect_to_product_details) {
-        let path = `/product_details/${this.item.card.product_id}`;
+        let path = `/product_details/${this.props.item.product_id}`;
         return <Redirect to={path} />;
       }
     return (
