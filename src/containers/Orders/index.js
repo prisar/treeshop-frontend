@@ -5,6 +5,7 @@ import SubHeader from "../../components/SubHeader";
 import MainFooter from "../../components/MainFooter";
 import { API_URL } from "../../config";
 import axios from 'axios';
+import jwt from "jsonwebtoken";
 
 class Orders extends Component {
   constructor(props) {
@@ -18,7 +19,10 @@ class Orders extends Component {
   }
 
   getOrders = () => {
-    axios.get(`${API_URL}orders/myorders?customerid=9`)
+    const access_token = localStorage.getItem("access_token");
+    const rows = jwt.decode(access_token);
+    const customerId = rows.rows[0].user_id;
+    axios.get(`${API_URL}orders/myorders?customerid=${customerId}`)
       .then(response => {
             let orders = response.data.orders;
             this.setState({ orders: orders });

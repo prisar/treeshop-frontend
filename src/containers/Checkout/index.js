@@ -10,6 +10,7 @@ export default class Checkout extends Component {
         <Masterhead />
         <SubHeader /> 
         <h1>Confirm Order</h1>
+        <div></div>
         <MainFooter />
       </div>
     )

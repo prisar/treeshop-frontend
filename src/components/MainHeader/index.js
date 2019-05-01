@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
 import "./styles.scss";
 
@@ -7,7 +7,15 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-import IconButton from "@material-ui/core/IconButton";
+
+
+const rootStyle = {
+  flexGrow: 1
+};
+
+const appNameStyle = {
+  flexGrow: 1
+};
 
 class Masterhead extends Component {
   getAccessToken() {
@@ -34,18 +42,10 @@ class Masterhead extends Component {
 
   render() {
     return (
-      <header className="header">
+      <header className="header" style={rootStyle}>
         <AppBar position="static">
           <Toolbar>
-            <IconButton
-              // className={classes.menuButton}
-              color="inherit"
-              aria-label="Menu"
-            >
-              {/* <MenuIcon /> */}
-            </IconButton>
-            <Typography variant="h6" color="inherit">
-              <Link to="/">Home</Link>
+            <Typography variant="h6" color="inherit" style={appNameStyle}>
               ecommerce
             </Typography>
 

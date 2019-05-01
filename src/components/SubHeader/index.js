@@ -5,9 +5,15 @@ import MenuList from "@material-ui/core/MenuList";
 
 import "./styles.scss";
 import { Toolbar, Menu, IconButton } from "@material-ui/core";
+import MenuIcon from "@material-ui/icons/Menu";
 
 const toolbarStyle = {
   backgroundColor: "yellow"
+};
+
+const menuButtonStyle = {
+  marginLeft: -12,
+  marginRight: 20,
 };
 
 export default class SubHeader extends Component {
@@ -36,13 +42,15 @@ export default class SubHeader extends Component {
       <div>
         <div className="menul">
           <Toolbar style={toolbarStyle}>
-            <IconButton
-              aria-label="More"
+          <IconButton
+              style={menuButtonStyle}
+              color="inherit"
+              aria-label="Menu"
               aria-owns={open ? "long-menu" : undefined}
               aria-haspopup="true"
               onClick={this.handleClick}
             >
-              Menu
+              <MenuIcon />
             </IconButton>
             <Menu
               id="long-menu"
