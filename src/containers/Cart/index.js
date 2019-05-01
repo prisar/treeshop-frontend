@@ -11,7 +11,8 @@ export default class Cart extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cart_items: []
+      cart_items: [],
+      cart_subtotal: 0
     };
   }
 
@@ -31,6 +32,19 @@ export default class Cart extends Component {
       this.setState({
         cart_items: items
       });
+
+      this.calcuateSubtotal();
+    });
+  }
+
+  calcuateSubtotal() {
+    let subtotal = 0;
+    for (let i = 0; i < this.state.cart_items.length; i++) {
+      subtotal += this.state.cart_items[i].product_price;
+    }
+    console.log(this.state.cart_items[0]);
+    this.setState({
+      cart_subtotal: subtotal
     });
   }
   render() {
@@ -39,7 +53,7 @@ export default class Cart extends Component {
         <Masterhead />
         <SubHeader />
         <h1>My Cart</h1>
-        <div>Cart Subtotal: {}</div>
+        <div><h3>Cart Subtotal ({this.state.cart_items.length} items): ₹ {this.state.cart_subtotal}</h3></div>
         <Button color="primary">Procced to Buy</Button>
         <div>
           {this.state.cart_items.map(item => (
