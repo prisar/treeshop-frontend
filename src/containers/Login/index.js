@@ -10,6 +10,7 @@ import Button from "@material-ui/core/Button";
 
 import { API_URL } from "../../config";
 import axios from "axios";
+import loginpg from "./../../i/login-pg.jpg";
 
 const initialstate = {
   loginUser: {
@@ -17,7 +18,23 @@ const initialstate = {
     password: ""
   },
   authenticated: false,
-  errorMessage: ""
+  errorMessage: "",
+  redirect_to_signup_page: false
+};
+
+const leftPageStyle = {
+  width: "50%",
+  height: "100vh"
+};
+
+const rightPageStyle = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  width: "50%",
+  height: "100vh",
+  position: "relative",
+  float: "right"
 };
 
 class Login extends Component {
@@ -55,8 +72,8 @@ class Login extends Component {
   };
 
   setSession = authResult => {
-    localStorage.setItem('access_token', authResult.token);
-  }
+    localStorage.setItem("access_token", authResult.token);
+  };
 
   fieldChange = e => {
     if (e.target.id === "email") {
@@ -70,34 +87,56 @@ class Login extends Component {
     }
   };
 
+  signUp = () => {
+    this.setState({
+      redirect_to_signup_page: true
+    });
+  }
+
   render() {
     if (this.state.authenticated) {
       return <Redirect to="/products" />;
     }
 
-    return (
-      <div className="Login">
-        <h5>Login</h5>
-        <div className="error-text">{this.state.errorMessage}</div>
+    if (this.state.redirect_to_signup_page) {
+      return <Redirect to="/signup" />;
+    }
 
-        <Input
-          id="email"
-          className="login-form-input"
-          placeholder="email"
-          onChange={this.fieldChange}
-        />
-        <Input
-          type="password"
-          className="login-form-input"
-          id="password"
-          placeholder="password"
-          onChange={this.fieldChange}
-        />
-        <Button variant="contained" color="primary" onClick={this.onSubmit}>
-          Login
-        </Button>
-        <NavLink to="/signup">Sign Up</NavLink>
-        <MainFooter />
+    return (
+      <div>
+        <img src={loginpg} style={leftPageStyle} />
+
+        <div style={rightPageStyle}>
+          <form className="lgoinForm">
+            <h5>Login</h5>
+            <div className="error-text">{this.state.errorMessage}</div>
+
+            <Input
+              id="email"
+              className="login-form-input"
+              placeholder="email"
+              onChange={this.fieldChange}
+            />
+            <Input
+              type="password"
+              className="login-form-input"
+              id="password"
+              placeholder="password"
+              onChange={this.fieldChange}
+            />
+            <button
+              className="login-btn"
+              onClick={this.onSubmit}
+            >
+              Login
+            </button>
+            <button className="signup-btn"
+            onClick={this.signUp}>
+              Sign Up
+            </button>
+            {/* <MainFooter /> */}
+          </form>
+        </div>
       </div>
     );
   }

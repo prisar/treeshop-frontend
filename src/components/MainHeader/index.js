@@ -17,6 +17,10 @@ const appNameStyle = {
   flexGrow: 1
 };
 
+const logoutButtonStyle = {
+  color: "white"
+};
+
 class Masterhead extends Component {
   constructor(props) {
     super(props);
@@ -91,18 +95,18 @@ class Masterhead extends Component {
               <div>
                 <Button color="inherit">
                   <NavLink className="icons btn-logout" to="/login">
-                    Login
+                    <div style={logoutButtonStyle}>Login</div>
                   </NavLink>
                 </Button>
                 <Button color="inherit">
-                  <NavLink to="/signup">Signup</NavLink>
+                  <NavLink to="/signup"><div style={logoutButtonStyle}>Signup</div></NavLink>
                 </Button>
               </div>
             )}
             {this.isAuthenticated() && (
               <div>
                 {this.state.displayName}
-                <Button onClick={this.logout}>Logout</Button>
+                <Button style={logoutButtonStyle} onClick={this.logout}>Logout</Button>
               </div>
             )}
           </Toolbar>
